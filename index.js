@@ -3,24 +3,18 @@
 
     var rc = angular.module('rc', []);
 
-    rc.run(function ($root) {
-        $root.hasPass = false;
-    })
-
-    rc.controller('passCtrl', function ($scope, $root) {
-        $scope.phase = 0;
-        $scope.errormsg = '';
+    rc.controller('rcCtrl', function ($scope, $root) {
+        $scope.hasPass = false;
+        $scope.passPhase = 0;
+        $scope.passerror = '';
         $scope.closeModal = function () {
             if ($scope.pass == 'illuminati') {
-                $scope.phase = 1;
-            } else if ($scope.phase == 1 && $scope.pass == 'confirmed') {
+                $scope.passPhase = 1;
+            } else if ($scope.passPhase == 1 && $scope.pass == 'confirmed') {
                 $root.hasPass = true;
             } 
-            $scope.errormsg = 'Senha incorreta';
+            $scope.passerror = 'Senha incorreta';
         };
-    });
-
-    rc.controller('rcCtrl', function ($scope, $root) {
         $scope.chave = '';
         $scope.msg = '';
         $scope.crypt = function () {
