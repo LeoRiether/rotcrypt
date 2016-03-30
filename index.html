@@ -11,7 +11,7 @@
     <div class="w3-modal" ng-hide="hasPass" style="display:block" >
         <div class="w3-modal-content w3-round-large w3-card-8">
             <div class="w3-card w3-container w3-xxlarge">
-                <input class="w3-input" type="password" placeholder="Senha">
+                <input class="w3-input" type="password" placeholder="Senha" ng-model="pass">
                 <button class="w3-btn w3-large w3-indigo w3-hover-blue w3-round w3-margin-top" ng-click="closeModal()">Entrar</button>
                 <p class="w3-large w3-text-red">{{passerror}}</p>
             </div>
