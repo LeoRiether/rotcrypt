@@ -7,6 +7,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
 <body ng-app="rc" ng-controller="rcCtrl">
+
+    <header class="w3-container w3-center w3-jumbotron"></header>
     
     <div class="w3-modal" ng-hide="hasPass" style="display:block" >
         <div class="w3-modal-content w3-round-large w3-card-8">
@@ -18,16 +20,15 @@
         </div>
     </div>
 
-    <div class="w3-container w3-margin-64">
+    <div class="w3-container w3-margin-64" ng-show="hasPass">
 
-        <input type="text" class="w3-input w3-large" placeholder="Chave" ng-model="chave">
-        <input type="text" class="w3-input w3-large" placeholder="Mensagem" ng-model="msg">
+        <input type="text" class="w3-input w3-large w3-margin-bottom" placeholder="Chave" ng-model="chave">
+        <input type="text" class="w3-input w3-large w3-margin-bottom" placeholder="Mensagem" ng-model="msg">
 
-        <button class="w3-btn w3-large w3-round w3-indigo w3-hover-blue" ng-click="crypt()">Criptografar</button>
-        <button class="w3-btn w3-large w3-round w3-indigo w3-hover-blue" ng-click="uncrypt()">Desriptografar</button>
+        <button class="w3-btn w3-large w3-round w3-indigo w3-hover-blue w3-half w3-margin" ng-click="crypt()">Criptografar</button>
+        <button class="w3-btn w3-large w3-round w3-indigo w3-hover-blue w3-half w3-margin" ng-click="uncrypt()">Descriptografar</button>
 
-        <p class="w3-large w3-border w3-round">{{result}}</p>
-
+        <p class="w3-large w3-border w3-round" ng-show="hasPass && result">{{result}}</p>
     </div>
 
     <script src="index.js"></script>
