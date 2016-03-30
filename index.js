@@ -89,12 +89,10 @@
         $scope.chave = '';
         $scope.msg = '';
         $scope.crypt = function () {
-            var a = RotCrypt.go($scope.chave, $scope.msg);
-            console.log(a);
+            $scope.result = RotCrypt.go($scope.chave, $scope.msg);
         };
         $scope.uncrypt = function () {
-            var a = RotCrypt.back($scope.chave, $scope.msg);
-            console.log(a);
+            $scope.result = RotCrypt.back($scope.chave, $scope.msg);
         };
     });
 
