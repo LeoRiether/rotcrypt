@@ -8,10 +8,10 @@
 </head>
 <body ng-app="rc" ng-controller="rcCtrl">
     
-    <div class="w3-modal" ng-show="hasPass">
+    <div class="w3-modal" ng-show="!hasPass">
         <div class="w3-card w3-container w3-xxlarge w3-round-large">
             <input class="w3-input" type="password" placeholder="Senha">
-            <button class="w3-btn w3-indigo w3-hover-blue w3-round"></button>
+            <button class="w3-btn w3-indigo w3-hover-blue w3-round" ng-click="closeModal()"></button>
         </div>
     </div>
     
