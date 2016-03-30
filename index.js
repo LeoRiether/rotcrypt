@@ -88,7 +88,7 @@
         $scope.chave = '';
         $scope.msg = '';
         $scope.crypt = function () {
-            
+            $scope.result = 'a';
         };
         $scope.uncrypt = function () {
             
