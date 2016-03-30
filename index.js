@@ -3,16 +3,30 @@
 
     var rc = angular.module('rc', []);
 
-    rc.controller('rcCtrl', function ($scope) {
-        $scope.hasPass = false;
-        $scope.passPhase = 0;
+    rc.run(function ($root) {
+        $root.hasPass = false;
+    })
+
+    rc.controller('passCtrl', function ($scope, $root) {
+        $scope.phase = 0;
         $scope.closeModal = function () {
             if ($scope.pass == 'illuminati') {
-                $scope.passPhase = 1;
-            } else if ($scope.passPhase == 1 && $scope.pass == 'confirmed') {
-                $scope.hasPass = true;
+                $scope.phase = 1;
+            } else if ($scope.phase == 1 && $scope.pass == 'confirmed') {
+                $root.hasPass = true;
             }
         };
+    });
+
+    rc.controller('rcCtrl', function ($scope, $root) {
+        $scope.chave = '';
+        $scope.msg = '';
+        $scope.crypt = function () {
+            
+        };
+        $scope.uncrypt = function () {
+            
+        }
     });
 
 })(document.querySelector.bind(document));
