@@ -72,6 +72,7 @@
 
     rc.controller('rcCtrl', function ($scope) {
         console.log('Initialized rcCtrl');
+        RotCrypt.init();
         $scope.hasPass = false;
         $scope.passPhase = 0;
         $scope.passerror = '';
@@ -88,10 +89,12 @@
         $scope.chave = '';
         $scope.msg = '';
         $scope.crypt = function () {
-            $scope.result = 'a';
+            var a = RotCrypt.go($scope.chave, $scope.msg);
+            console.log(a);
         };
         $scope.uncrypt = function () {
-            
+            var a = RotCrypt.back($scope.chave, $scope.msg);
+            console.log(a);
         };
     });
 
