@@ -16,10 +16,13 @@
             } 
             $scope.passerror = 'Senha incorreta';
         };
+        $scope.result = '';
         $scope.chave = '';
         $scope.msg = '';
         $scope.crypt = function () {
-            console.log($scope.chave, $scope.msg);    
+            if (!$scope.hasPass) {
+                $scope.result = 'Don\'t think you can beat me...';
+            }   
         };
         $scope.uncrypt = function () {
             
