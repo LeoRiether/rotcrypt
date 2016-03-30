@@ -12,7 +12,7 @@
             if ($scope.pass == 'illuminati') {
                 $scope.passPhase = 1;
             } else if ($scope.passPhase == 1 && $scope.pass == 'confirmed') {
-                $root.hasPass = true;
+                $scope.hasPass = true;
             } 
             $scope.passerror = 'Senha incorreta';
         };
