@@ -82,16 +82,19 @@
                 $scope.hasPass = true;
             } 
             $scope.passerror = 'Senha incorreta';
+            $scope.pass = '';
         };
         $scope.result = '';
         $scope.chave = '';
         $scope.msg = '';
         $scope.crypt = function () {
-            $scope.result = RotCrypt.go($scope.chave, $scope.msg);
+            var a = RotCrypt.go($scope.chave, $scope.msg);
+            console.log(a);
         };
         $scope.uncrypt = function () {
-            $scope.result = RotCrypt.back($scope.chave, $scope.msg);
-        }
+            var a = RotCrypt.back($scope.chave, $scope.msg);
+            console.log(a);
+        };
     });
 
 })(document.querySelector.bind(document));
