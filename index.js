@@ -3,7 +3,8 @@
 
     var rc = angular.module('rc', []);
 
-    rc.controller('rcCtrl', function ($scope, $root) {
+    rc.controller('rcCtrl', function ($scope) {
+        console.log('Initialized rcCtrl');
         $scope.hasPass = false;
         $scope.passPhase = 0;
         $scope.passerror = '';
