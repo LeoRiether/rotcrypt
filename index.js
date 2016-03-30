@@ -1,99 +1,39 @@
-(function ($) {
-    'use strict';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RotCrypt</title>
+    <link rel="stylesheet" href="//www.w3schools.com/lib/w3.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="rc" ng-controller="rcCtrl">
 
-    function toc (c) {
-        return c.charCodeAt(0);
-    }
-    function fromc (i) {
-        return String.fromCharCode(i);
-    }
+    <header class="w3-container w3-center w3-border-bottom" style="z-index: 100;">
+        <h1 class="w3-xxlarge">RotCrypt</h1>
+    </header>
+    
+    <div class="w3-modal" ng-hide="hasPass" style="display:block" >
+        <div class="w3-modal-content w3-round-large w3-card-8" style="overflow:hidden">
+            <div class="w3-card w3-container w3-xxlarge">
+                <input class="w3-input" type="password" placeholder="Senha" ng-model="pass">
+                <button class="w3-btn w3-large w3-indigo w3-hover-blue w3-round w3-margin-top" ng-click="closeModal()">Entrar</button>
+                <p class="w3-large w3-text-red">{{passerror}}</p>
+            </div>
+        </div>
+    </div>
 
-    var RotCrypt = {
-        rots: [],
-        min: toc('a'),
-        max: toc('z')+1,
-        init: function () {
-            var delta = RotCrypt.max-RotCrypt.min,
-                ta;
-            for (var i = 0; i < delta; i++) {
-                ta = [];
-                for (var l = RotCrypt.min; l < RotCrypt.max; l++) {
-                    //ta.push(l-i<RotCrypt.min?l-i+delta:l-i);
-                    ta.push(l+i>RotCrypt.max?l+i-delta:l+i);
-                }
-                RotCrypt.rots.push(ta);
-            }
-            //RotCrypt.rots.reverse();
-        },
+    <div class="w3-container w3-margin-64" ng-show="hasPass">
 
-        go: function (pass, text) {
-            pass = pass.toLowerCase().replace(/[^a-z]/g, '');
-            text = text.toLowerCase();
-            var rc = '';
-            for (var i = 0; i < text.length; i++) {
-                if(text[i] == ' ') {
-                    rc += ' ';
-                    continue;
-                }
-                rc += fromc(RotCrypt.rots
-                    [toc(pass[i%pass.length])-RotCrypt.min]
-                    [toc(text[i])-RotCrypt.min]
-                );
-            }
-            return rc;
-        },
+        <input type="text" class="w3-input w3-large w3-margin-bottom" placeholder="Chave" ng-model="chave">
+        <input type="text" class="w3-input w3-large w3-margin-bottom" placeholder="Mensagem" ng-model="msg">
 
-        back: function (pass, rc) {
-            pass = pass.toLowerCase().replace(/[^a-z]/g, '');
-            rc = rc.toLowerCase();
-            var text = '';
-            for (var i = 0; i < rc.length; i++) {
-                if(rc[i] == ' ') {
-                    text += ' ';
-                    continue;
-                }
-                text += fromc(RotCrypt.keyfval(pass, rc, i)+RotCrypt.min);
-            }
-            return text;
-        },
+        <button class="w3-btn w3-large w3-round w3-white w3-border w3-border-indigo w3-third w3-margin" ng-click="crypt()">Criptografar</button>
+        <button class="w3-btn w3-large w3-round w3-white w3-border w3-border-indigo w3-third w3-margin" ng-click="uncrypt()">Descriptografar</button>
 
-        keyfval: function (pass, rc, i) {
-            for (var j = 0; j < RotCrypt.rots.length; j++){
-                if (fromc(RotCrypt.rots[toc(pass[i%pass.length])-RotCrypt.min][j]) == rc[i]) {
-                    return j;
-                }
-            }
-            console.log('Nope', rc[i]);
-            return null;
-        }
-    };
+        <p class="w3-large w3-border w3-round w3-col w3-padding" ng-show="hasPass && result">{{result}}</p>
+    </div>
 
-    var rc = angular.module('rc', []);
+    <script src="index.js"></script>
 
-    rc.controller('rcCtrl', function ($scope) {
-        console.log('Initialized rcCtrl');
-        RotCrypt.init();
-        $scope.hasPass = false;
-        $scope.passPhase = 0;
-        $scope.passerror = '';
-        $scope.closeModal = function () {
-            if ($scope.pass == 'illuminati') {
-                $scope.passPhase = 1;
-            } else if ($scope.passPhase == 1 && $scope.pass == 'confirmed') {
-                $scope.hasPass = true;
-            } 
-            $scope.passerror = 'Senha incorreta';
-            $scope.pass = '';
-        };
-        $scope.result = '';
-        $scope.chave = '';
-        $scope.msg = '';
-        $scope.crypt = function () {
-            $scope.result = RotCrypt.go($scope.chave, $scope.msg);
-        };
-        $scope.uncrypt = function () {
-            $scope.result = RotCrypt.back($scope.chave, $scope.msg);
-        };
-    });
-
-})(document.querySelector.bind(document));
+</body>
+</html>
