@@ -77,9 +77,9 @@
         $scope.passPhase = 0;
         $scope.passerror = '';
         $scope.closeModal = function () {
-            if ($scope.pass == 'illuminati') {
+            if (RotCrypt.go('Leonardo', $scope.pass) == 'tpzhmzqoem') {
                 $scope.passPhase = 1;
-            } else if ($scope.passPhase == 1 && $scope.pass == 'confirmed') {
+            } else if ($scope.passPhase == 1 && RotCrypt.go('Leonardo', $scope.pass) == 'nsbsiipso') {
                 $scope.hasPass = true;
             } 
             $scope.passerror = 'Senha incorreta';
