@@ -31,7 +31,7 @@
         <button class="w3-btn w3-large w3-round w3-white w3-border w3-border-indigo w3-third" ng-click="crypt()">Criptografar</button>
         <button class="w3-btn w3-large w3-round w3-white w3-border w3-border-indigo w3-third" ng-click="uncrypt()" style="margin-left: 10%">Descriptografar</button>
 
-        <p class="w3-large w3-border w3-round w3-col w3-padding" ng-show="hasPass && result">{{result}}</p>
+        <input ng-bind="result" class="w3-large w3-border w3-round w3-col w3-padding" ng-show="hasPass && result">
     </div>
 
     <script src="index.js"></script>
