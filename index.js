@@ -19,7 +19,7 @@
                 ta = [];
                 for (var l = RotCrypt.min; l < RotCrypt.max; l++) {
                     //ta.push(l-i<RotCrypt.min?l-i+delta:l-i);
-                    ta.push(l+i>RotCrypt.max?l+i-delta:l+i);
+                    ta.push(l+i>RotCrypt.max-1?l+i-delta:l+i);
                 }
                 RotCrypt.rots.push(ta);
             }
